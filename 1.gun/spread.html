@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <button onclick="basitSpread()">Dizi içindeki elemanları yazdır</button>
+   <button onclick="ArrayKopyalama()">Array Kopyalama</button>
+  <button onclick="ObjeKopyalama()">Obje Kopyalama</button>
+  <button onclick="DiziBirlestir()">Dizileri Birleştirme</button>
+  <button onclick="ObjeBirlestir()">Obje Birleştir</button>
+  <button onclick="StringBolumleme()">String Bolumleme</button>
+  <button onclick="fonksiyonaNParametreGonderme()">Fonksiyona N Parametre Gönderme</button>
+  <button onclick="fonksiyonaParametreGonderme2()">Fonkiyona Parametre Gönderme 2</button>
+  <button onclick="DeStructuringOrnek()">DeStructuring Örnek</button>
+  <button onclick="spreadManipulasyon()">Manipulasyon Örnek</button>
+  <div>div</div>
+  <div>div</div>
+  <div>div</div>
+  <div>div</div>
+  <div>div</div>
+    <script>
+function basitSpread()
+{
+    const meyveler = ['Elma','Mandalina','Portakal','Armut'];
+    console.log(...meyveler);
+}
+
+function ArrayKopyalama() {
+    let meyveler  =['Elma','Mandalina','Portakal','Armut'];
+    let meyveler_copy = [...meyveler];
+    console.log(meyveler_copy);
+    meyveler.push('çilek');
+    console.log(meyveler);
+    console.log(meyveler_copy);
+}
+
+function ObjeKopyalama()
+{
+    const kullanici = {
+        name :"İbrahim",
+        surname :"Gökyar"
+    }
+    const kullaniciKopya = {...kullanici}
+    console.log(kullaniciKopya);
+    kullanici.yas = 45;
+    console.log(kullanici);
+    console.log(kullaniciKopya);
+}
+
+function DiziBirlestir() {
+    const erkekIsimleri = ['Hakan','Mehmet'];
+    const kadiIsimleri = ['Aslı','Hande'];
+    const TumIsimler = [...erkekIsimleri,...kadiIsimleri];
+    console.log(TumIsimler);
+
+}
+
+function ObjeBirlestir() {
+    const kullanici = {
+        name : "ibrahim",
+        surname : "gökyar"
+    }
+    const evcilHayvanlar = {
+        pets : {
+            kediler : ["boncuk","pamuk"],
+            kopek : ["kangal"]
+        }
+    }
+
+    const kullaniciDetay = {...kullanici,...evcilHayvanlar}
+    console.log(kullaniciDetay);
+}
+
+function StringBolumleme() {
+    let kullaniciAdi ="ibrahimgokyar";
+    let chars = [...kullaniciAdi]
+
+    console.log(chars);
+}
+
+function kareAl(...sayilar) {
+    return sayilar.map(sayi => sayi* 2);
+}
+
+function fonksiyonaNParametreGonderme() {
+    console.log(kareAl(1,3,5,7,9,10,11,12,13,14,15,16));
+}
+
+function stringBirlestir(name,surname) {
+    return `${name} ${surname} `;
+}
+
+function fonksiyonaParametreGonderme2() {
+    let user = ["ibrahim","gökyar"];
+    console.log(stringBirlestir(...user));
+}
+
+function DeStructuringOrnek() {
+    const kisi = {
+        adisoyadi : 'ibrahimgokyar',
+        yas : 45,
+        meslek : 'developer',
+        yetenekler :'html,java,android,ios,react,angular'
+    }
+    const {adisoyadi,yas,...diger} = kisi
+    console.log(`${adisoyadi}`)
+    console.log(`${yas}`)
+    console.log(`${diger}`)
+}
+
+function spreadManipulasyon() {
+    const divs = document.querySelectorAll('div');
+    const divsNodeArray = [...divs];
+    divsNodeArray.forEach((div,key) => {
+        div.innerText =`${div.innerText} #${key+1}`
+    })
+}
+
+
+    </script>
+</body>
+</html>
